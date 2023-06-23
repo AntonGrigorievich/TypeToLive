@@ -118,3 +118,16 @@ legend {
     border-radius: 20%;
     cursor: pointer;
 }
+
+dialog {
+    padding: 10px;
+    margin: auto;
+    background: lightblue;
+    border: none;
+    border-radius: 1rem;
+}
+
+dialog > div {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: large;
+}

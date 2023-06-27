@@ -15,6 +15,8 @@ let time = 0
 let errorCount = 0
 let typed = 0
 
+console.dir(Promise.all);
+
 const startTyping = function() {
     timerInterval = setInterval(() => {
         updateTimer(time, timer)

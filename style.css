@@ -3,6 +3,7 @@
 	padding: 0px;
 	margin: 0px;
 	border: none;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
 *,
@@ -88,7 +89,7 @@ legend {
 	display: block;
 }
 
-.ticker {
+.typewriter {
     display: flex;
     width: 100%;
     height: 30%;
@@ -99,8 +100,17 @@ legend {
     justify-content: center;
 }
 
+.ticker {
+    padding: .3rem;
+    display: flex;
+    justify-content: baseline;
+    border: solid rgb(57, 96, 103);
+    border-radius: 10px;
+}
+
 .typed {
     background-color: rgb(194, 192, 192);
+    color: rgb(103, 100, 100);
     white-space: pre;
 }
 
@@ -109,14 +119,14 @@ legend {
 }
 
 .button {
-    position: absolute;
-    top: 20%;
-    left: 50%;
     transform: translate(-50%, -50%);
-    background-color: rgb(136, 37, 227);
-    color: white;
-    border-radius: 20%;
+    padding: 0.3rem;
+    background-color: rgb(53, 201, 194);
+    color: rgb(0, 0, 0);
+    border: solid black 2px;
+    border-radius: 10px;
     cursor: pointer;
+    text-transform: uppercase;
 }
 
 dialog {

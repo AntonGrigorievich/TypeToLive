@@ -98,12 +98,12 @@ legend {
     left: 0;
     align-items: center;
     justify-content: center;
+    flex-direction: column;
 }
 
 .ticker {
     padding: .3rem;
     display: flex;
-    justify-content: baseline;
     border: solid rgb(57, 96, 103);
     border-radius: 10px;
 }
@@ -118,15 +118,23 @@ legend {
     white-space: pre;
 }
 
+.dialog-buttons {
+    display: flex;
+}
+
 .button {
-    transform: translate(-50%, -50%);
     padding: 0.3rem;
+    margin: 0.3rem;
     background-color: rgb(53, 201, 194);
     color: rgb(0, 0, 0);
     border: solid black 2px;
     border-radius: 10px;
     cursor: pointer;
     text-transform: uppercase;
+}
+
+#dialog-restart-button {
+    background-color: rgb(212, 51, 51);
 }
 
 dialog {

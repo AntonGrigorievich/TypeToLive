@@ -6,7 +6,9 @@ let typedWords = document.querySelector('.typed')
 let wordsToType = document.querySelector('.not-typed')
 const infoDialog = document.querySelector('dialog')
 
-const startButton = document.querySelector('.button')
+const startButton = document.querySelector('#start-button')
+const dialogResumeButton = document.querySelector('#dialog-resume-button')
+const dailogRestartButton = document.querySelector('#dialog-restart-button')
 
 const errors = document.querySelector('.type-errors')
 const timer = document.querySelector('.type-timer')
@@ -15,8 +17,6 @@ let time = 0
 let errorCount = 0
 let typed = 0
 
-console.dir(Promise.all);
-
 const startTyping = function() {
     timerInterval = setInterval(() => {
         updateTimer(time, timer)
@@ -24,6 +24,7 @@ const startTyping = function() {
     }, 1000)
 
     errors.textContent = errorCount
+    dialogResumeButton.style.visibility = 'visible'
     startButton.textContent = 'pause'
     startButton.onclick = pauseTyping
     infoDialog.close()
@@ -44,8 +45,15 @@ const pauseTyping = function() {
 }
 
 const finishTyping = function() {
+    dialogResumeButton.style.visibility = 'hidden'
+    document.onkeydown = {}
+    clearInterval(timerInterval)
     updateInfoDialog(infoDialog)
     infoDialog.show()
+    time = 0
+    errorCount = 0
+    typed = 0
+    wasTyped = ''
 }
 
 const readInput = function() {
@@ -68,8 +76,7 @@ const checkKey = function(event) {
             res = false
         }
     if (typed >= words.length){
-        console.log('stop');
-        pauseTyping()
+        finishTyping()
         clearInterval(timerInterval)
         startButton.textContent = 'restart'
         errorCount = 0
@@ -95,3 +102,8 @@ const updateInfoDialog = function(dialog) {
 }
 
 startButton.onclick = startTyping
+dialogResumeButton.onclick = startTyping
+dailogRestartButton.onclick = () => {
+    finishTyping()
+    startTyping()
+}

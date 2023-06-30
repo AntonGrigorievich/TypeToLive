@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
     <title>TTL</title>
 </head>
 <body>
@@ -18,14 +18,18 @@
             <div class="typed">Press</div>
             <div class="not-typed">&nbsp;start</div>
         </div>
-        <div class="button">start</div>
+        <div class="button" id="start-button">start</div>
     </div>
     <dialog>
         <div class="info-row">Время:</div>
         <div class="info-row">Введено:</div>
         <div class="info-row">Скорость:</div>
         <div class="info-row">Точность:</div>
+        <div class="dialog-buttons">
+            <div class="button" id="dialog-resume-button">resume</div>
+            <div class="button" id="dialog-restart-button">restart</div>
+        </div>
     </dialog>
-    <script src="app.js"></script>
+    <script src="{{ url_for('static', filename='app.js') }}"></script>
 </body>
 </html>

@@ -6,7 +6,7 @@ export PYTHONUNBUFFERED=true
 
 VIRTUALENV=./venv
 
-if [ ! -d $VIRTUALENV]; then
+if [ ! -d $VIRTUALENV ]; then
     python3 -m venv $VIRTUALENV
 fi
 

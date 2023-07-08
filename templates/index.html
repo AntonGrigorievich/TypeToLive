@@ -8,17 +8,23 @@
     <title>TTL</title>
 </head>
 <body>
-    <h1>TypeToLive</h1>
-    <div class="info">
-        <div class="type-timer">00:00</div>
-        <div class="type-errors"></div>
-    </div>
+    <h1 id="heading">TypeToLive</h1>
+    
     <div class="typewriter">
+        <div class="info">
+            <div class="type-timer">00:00</div>
+            <div class="type-errors"></div>
+        </div>
         <div class="ticker">
             <div class="typed">Press</div>
             <div class="not-typed">&nbsp;start</div>
         </div>
-        <div class="button" id="start-button">start</div>
+        <div class="buttons">
+            <div class="button" id="start-button">start</div>
+            <div class="button" id="settings-button">
+                <p>⚙</p>
+            </div>
+        </div>
     </div>
     <dialog>
         <div class="info-row">Время:</div>

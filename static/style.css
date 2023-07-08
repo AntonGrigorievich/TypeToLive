@@ -89,6 +89,23 @@ legend {
 	display: block;
 }
 
+#heading {
+    display: flex;
+    margin: 1rem;
+    font-size: 2rem;
+    text-align: center;
+    justify-content: center;
+    background: linear-gradient(rgba(218, 213, 213, 0.284), rgb(246, 238, 238)), url('https://rare-gallery.com/thumbnail/89554-skull-minimalism-minimalist-hd-4k-dark-black.jpg');
+    background-position: center;
+    background-size: cover;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.info {
+    margin: 1rem;
+}
+
 .typewriter {
     display: flex;
     width: 100%;
@@ -102,15 +119,17 @@ legend {
 }
 
 .ticker {
-    padding: .3rem;
+    padding: .5rem;
+    font-size: xx-large;
     display: flex;
-    border: solid rgb(57, 96, 103);
+    background-color: rgb(195, 199, 198);
     border-radius: 10px;
 }
 
 .typed {
-    background-color: rgb(194, 192, 192);
-    color: rgb(103, 100, 100);
+    background-color: rgb(139, 137, 137);
+    border-radius: 5px;
+    color: rgb(36, 36, 36);
     white-space: pre;
 }
 
@@ -122,15 +141,38 @@ legend {
     display: flex;
 }
 
+.buttons {
+    display: flex;
+}
+
 .button {
-    padding: 0.3rem;
-    margin: 0.3rem;
+    padding: .5rem;
+    margin: .3rem;
+    transition: .2s;
     background-color: rgb(53, 201, 194);
     color: rgb(0, 0, 0);
-    border: solid black 2px;
     border-radius: 10px;
     cursor: pointer;
     text-transform: uppercase;
+    min-height: 3.5vh;
+    max-height: 3.5vh;
+}
+
+#settings-button {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    font-size: xx-large;
+    background-color: lightslategrey;
+    /* height: 3.5vh;
+    width: 3.5vh; */
+}
+
+.button:hover {
+    transition: .2s;
+    /* letter-spacing: .1vw; */
+    box-shadow: .1vw 2px 2px 1px rgba(26, 69, 75, 0.2);
 }
 
 #dialog-restart-button {
@@ -146,6 +188,5 @@ dialog {
 }
 
 dialog > div {
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-size: large;
 }

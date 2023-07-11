@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
     <title>TTL</title>
 </head>
 <body>
@@ -21,12 +22,10 @@
         </div>
         <div class="buttons">
             <div class="button" id="start-button">start</div>
-            <div class="button" id="settings-button">
-                <p>⚙</p>
-            </div>
+            <div class="button" id="settings-button"> ⚙ </div>
         </div>
     </div>
-    <dialog>
+    <dialog class="stats-dialog">
         <div class="info-row">Время:</div>
         <div class="info-row">Введено:</div>
         <div class="info-row">Скорость:</div>

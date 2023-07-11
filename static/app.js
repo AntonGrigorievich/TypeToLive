@@ -1,13 +1,14 @@
-// let words = 'software behead shake bird feed quality coverage flight battlefield grace find result licence few matter punish snub onion injury sweet village contradiction guitar player toll polish slot coerce sound solve scene rider material have aid common symptom mayor warn retain'
+let words = 'software behead shake bird feed quality coverage flight battlefield grace find result licence few matter punish snub onion injury sweet village contradiction guitar player toll polish slot coerce sound solve scene rider material have aid common symptom mayor warn retain'
 // const words = 'aaaaa'
-let words
+// let words
 let wasTyped = ''
 
 let typedWords = document.querySelector('.typed')
 let wordsToType = document.querySelector('.not-typed')
-const infoDialog = document.querySelector('dialog')
+const infoDialog = document.querySelector('.stats-dialog')
 
 const startButton = document.querySelector('#start-button')
+const settingsButton = document.querySelector('#settings-button')
 const dialogResumeButton = document.querySelector('#dialog-resume-button')
 const dailogRestartButton = document.querySelector('#dialog-restart-button')
 
@@ -145,6 +146,7 @@ const startTyping = function() {
 
     errors.textContent = errorCount
     dialogResumeButton.style.visibility = 'visible'
+    settingsButton.style.display = 'none'
     startButton.textContent = 'pause'
     startButton.onclick = pauseTyping
     infoDialog.close()
@@ -222,13 +224,14 @@ const updateInfoDialog = function(dialog) {
     rows[3].textContent = String((typed / (typed + errorCount) * 100).toFixed(2)) + ' % точность'
 }
 
-console.log('FETCHING ---')
-fetch('https://random-word-api.herokuapp.com/word?number=10')
-    .then(response => response.json())
-    .then(data => words = data.join(' '));
+// console.log('FETCHING ---')
+// fetch('https://random-word-api.herokuapp.com/word?number=10')
+//     .then(response => response.json())
+//     .then(data => words = data.join(' '));
 
 
 startButton.onclick = startTyping
+settingsButton.onclick = (() => console.log('settings'))
 dialogResumeButton.onclick = startTyping
 dailogRestartButton.onclick = () => {
     finishTyping()

@@ -154,17 +154,20 @@ legend {
     border-radius: 10px;
     cursor: pointer;
     text-transform: uppercase;
-    min-height: 3.5vh;
-    max-height: 3.5vh;
+    /* min-height: 3.5vh;
+    max-height: 3.5vh; */
 }
 
 #settings-button {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    text-align: center;
+    align-items: center;
+    white-space: pre;
     font-size: xx-large;
     background-color: lightslategrey;
+    max-width: 35px;
+    max-height: 35px;
     /* height: 3.5vh;
     width: 3.5vh; */
 }

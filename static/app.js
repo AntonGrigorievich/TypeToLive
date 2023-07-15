@@ -1,11 +1,13 @@
-let words = 'software behead shake bird feed quality coverage flight battlefield grace find result licence few matter punish snub onion injury sweet village contradiction guitar player toll polish slot coerce sound solve scene rider material have aid common symptom mayor warn retain'
+// let words = 'software behead shake bird feed quality coverage flight battlefield grace find result licence few matter punish snub onion injury sweet village contradiction guitar player toll polish slot coerce sound solve scene rider material have aid common symptom mayor warn retain'
 // const words = 'aaaaa'
-// let words
+let words
 let wasTyped = ''
 
 let typedWords = document.querySelector('.typed')
 let wordsToType = document.querySelector('.not-typed')
+
 const infoDialog = document.querySelector('.stats-dialog')
+const settingsDialog = document.querySelector('.settings-dialog')
 
 const startButton = document.querySelector('#start-button')
 const settingsButton = document.querySelector('#settings-button')
@@ -18,6 +20,20 @@ let timerInterval
 let time = 0
 let errorCount = 0
 let typed = 0
+
+// generated words parameters
+let fishWordsUrl = 'https://random-word-api.herokuapp.com/word'
+let number = 10
+let length = null
+let lang = null
+
+console.log(`FETCHING --- ${number} words`)
+fishWordsUrl += `?number=${number}`
+if (length) {fishWordsUrl += `$length=${length}`}
+if (lang) {fishWordsUrl += `&lang=${lang}`}
+fetch(fishWordsUrl)
+    .then(response => response.json())
+    .then(data => words = data.join(' '));
 
 // class Typewriter {
 
@@ -137,6 +153,9 @@ let typed = 0
 //     }
 // }
 
+const fetchFishWords = function(number=10, length=null, lang=null, url = fishWordsUrl) {
+
+}
 
 const startTyping = function() {
     timerInterval = setInterval(() => {
@@ -224,14 +243,11 @@ const updateInfoDialog = function(dialog) {
     rows[3].textContent = String((typed / (typed + errorCount) * 100).toFixed(2)) + ' % точность'
 }
 
-// console.log('FETCHING ---')
-// fetch('https://random-word-api.herokuapp.com/word?number=10')
-//     .then(response => response.json())
-//     .then(data => words = data.join(' '));
-
-
 startButton.onclick = startTyping
-settingsButton.onclick = (() => console.log('settings'))
+settingsButton.onclick = (() => {
+    if (settingsDialog.open) {settingsDialog.close()}
+    else (settingsDialog.show())
+})
 dialogResumeButton.onclick = startTyping
 dailogRestartButton.onclick = () => {
     finishTyping()

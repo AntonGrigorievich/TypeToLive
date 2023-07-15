@@ -190,6 +190,15 @@ dialog {
     border-radius: 1rem;
 }
 
+.settings {
+    display: flex;
+    flex-direction: column;
+}
+
+.settings-row {
+    margin: .1rem;
+}
+
 dialog > div {
     font-size: large;
 }

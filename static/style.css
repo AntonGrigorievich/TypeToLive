@@ -158,24 +158,23 @@ legend {
     max-height: 3.5vh; */
 }
 
+.button:hover {
+    transition: .2s;
+    transform: translate(-2px);
+    box-shadow: .1vw 2px 2px 1px rgba(26, 69, 75, 0.2);
+}
+
 #settings-button {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    white-space: pre;
     font-size: xx-large;
     background-color: lightslategrey;
     max-width: 35px;
     max-height: 35px;
     /* height: 3.5vh;
     width: 3.5vh; */
-}
-
-.button:hover {
-    transition: .2s;
-    /* letter-spacing: .1vw; */
-    box-shadow: .1vw 2px 2px 1px rgba(26, 69, 75, 0.2);
 }
 
 #dialog-restart-button {

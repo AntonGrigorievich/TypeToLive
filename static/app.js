@@ -27,137 +27,36 @@ let number = 10
 let length = null
 let lang = null
 
-console.log(`FETCHING --- ${number} words`)
-fishWordsUrl += `?number=${number}`
-if (length) {fishWordsUrl += `$length=${length}`}
-if (lang) {fishWordsUrl += `&lang=${lang}`}
-fetch(fishWordsUrl)
+
+// fishWordsUrl += `?number=${number}`
+// if (length) {fishWordsUrl += `$length=${length}`}
+// if (lang) {fishWordsUrl += `&lang=${lang}`}
+// fetch(fishWordsUrl)
+//     .then(response => response.json())
+//     .then(data => words = data.join(' '));
+
+
+const fetchFishWords = async function(number=10, length=null, lang=null, url = fishWordsUrl) {
+    console.log(`FETCHING --- ${number} words of length ${length? length: 'any'} and ${lang? lang: 'en'}`)
+    url += `?number=${number}`
+    if (length) {url += `&length=${length}`}
+    if (lang) {url += `&lang=${lang}`}
+    await fetch(url)
     .then(response => response.json())
-    .then(data => words = data.join(' '));
-
-// class Typewriter {
-
-//     constructor() {
-//         // ticker content
-//         this.words = '' 
-//         this.wasTyped = ''
-
-//         // statistics
-//         this.timerInterval
-//         this.time = 0
-//         this.errorCount = 0
-//         this.typed = 0
-
-//         // typewriter DOM elements
-//         this.errors = document.querySelector('.type-errors')
-//         this.timer = document.querySelector('.type-timer')
-//         this.typedWords = document.querySelector('.typed')
-//         this.wordsToType = document.querySelector('.not-typed')
-//         this.infoDialog = document.querySelector('dialog')
-//         this.startButton = document.querySelector('#start-button')
-//         this.dialogResumeButton = document.querySelector('#dialog-resume-button')
-//         this.dailogRestartButton = document.querySelector('#dialog-restart-button')
-
-//         // this.startButton.onclick = this.startTyping
-//         // this.dialogResumeButton.onclick = this.startTyping
-//         // this.dailogRestartButton.onclick = () => {
-//         //     this.finishTyping()
-//         //     this.startTyping()
-//         // }
-//     }
-    
-//     updateTimer(time, timer) {
-//         seconds = time%60 < 10? `0${time%60}` : `${time%60}`
-//         minutes = Math.floor(time/60) < 10? `0${Math.floor(time/60)}` : `${Math.floor(time/60)}`
-//         timer.textContent = `${minutes}:${seconds}`
-//     }
-
-//     startTyping() {
-//         this.timerInterval = setInterval(() => {
-//             this.updateTimer(this.time, this.timer)
-//             this.time++
-//         }, 1000)
-
-//         console.log('a;sdlkfj', this.errors)
-//         this.errors.textContent = this.errorCount
-//         this.dialogResumeButton.style.visibility = 'visible'
-//         this.startButton.textContent = 'pause'
-//         this.startButton.onclick = this.pauseTyping
-//         this.infoDialog.close()
-
-//         this.typedWords.textContent = this.wasTyped.slice(-20, typed)
-//         this.wordsToType.textContent = this.words.slice(typed, 20 + typed)
-
-//         this.readInput()
-//     }
-
-//     pauseTyping() {
-//         clearInterval(this.timerInterval)
-//         document.onkeydown = {}
-//         // TODO: save progress to local storage and resume later?
-//         this.startButton.textContent = 'resume'
-//         this.startButton.onclick = this.startTyping
-//         this.updateInfoDialog(this.infoDialog)
-//         this.infoDialog.show()
-//     }
-
-//     finishTyping() {
-//         this.dialogResumeButton.style.visibility = 'hidden'
-//         document.onkeydown = {}
-//         clearInterval(this.timerInterval)
-//         this.updateInfoDialog(this.infoDialog)
-//         this.infoDialog.show()
-//         this.time = 0
-//         this.errorCount = 0
-//         this.typed = 0
-//         this.wasTyped = ''
-//     }
-
-//     checkKey(event) {
-//         key = event.key
-//         if (key === this.wordsToType.textContent[0]) {
-//             this.typed++
-//             this.wasTyped += key
-//             this.typedWords.textContent = this.wasTyped.slice(-20, typed)
-//             this.wordsToType.textContent = this.words.slice(this.typed, 20 + this.typed)
-//             res = true
-//         } else {
-//             this.errorCount++
-//             this.errors.textContent = this.errorCount
-//             res = false
-//         }
-//         if (this.typed >= this.words.length) {
-//             this.finishTyping()
-//             clearInterval(this.timerInterval)
-//             this.startButton.textContent = 'restart'
-//             this.errorCount = 0
-//             this.typed = 0
-//             this.time = 0
-//             return
-//         }
-//         return res
-//     }
-
-//     readInput() {
-//         document.onkeydown = (event) => {
-//             checkKey(event)
-//         }
-//     }
-
-//     updateInfoDialog(dialog) {
-//         rows = dialog.children
-//         this.updateTimer(this.time, rows[0])
-//         rows[1].textContent = this.typed + ' знаков'
-//         rows[2].textContent = '~' + String(this.typed / this.time * 60).slice(0, 3) + ' знаков в минуту'
-//         rows[3].textContent = String((this.typed / (this.typed + this.errorCount) * 100).toFixed(2)) + ' % точность'
-//     }
-// }
-
-const fetchFishWords = function(number=10, length=null, lang=null, url = fishWordsUrl) {
-
+    .then(data => {
+        console.log('Response:', data)
+        words = data.join(' ').toLowerCase()
+        return true
+})
+    .catch(err => {
+        console.error(err)
+        words = 'Sorry, we failed to generate words'
+        return false
+    })
 }
 
-const startTyping = function() {
+const startTyping = async function() {
+    if (!words) {await fetchFishWords(number, length, lang)}
     timerInterval = setInterval(() => {
         updateTimer(time, timer)
         time += 1
@@ -168,6 +67,7 @@ const startTyping = function() {
     settingsButton.style.display = 'none'
     startButton.textContent = 'pause'
     startButton.onclick = pauseTyping
+    settingsDialog.close()
     infoDialog.close()
 
     typedWords.textContent = wasTyped.slice(-20, typed)

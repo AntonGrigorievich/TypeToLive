@@ -36,14 +36,18 @@
         </div>
     </dialog>
     <dialog class="settings-dialog">
-        <form action="" method="post">
-            <div class="settings">
-                <div class="settings-row">amount<input type="number" name="number of words" id=""></div>
-                <div class="settings-row">length<input type="number" name="length of words" id=""></div>
-                <div class="settings-row">lowercase<input type="checkbox" name="lowercase only" id=""></div>
+        <div class="settings">
+            <div class="settings-row">
+                <label for="words-amount">amount</label> <input type="number" id="words-amount" value="1" min="1" max="100">
             </div>
-            <button type="submit">submit</button>
-        </form>
+            <div class="settings-row">
+                <label for="words-length">length</label> <input type="number" id="words-length" min="1" max="15">
+            </div>
+            <div class="settings-row">
+                <label for="words-language">language</label> <input type="" id="words-language">
+            </div>
+        </div>
+        <button type="submit">submit</button>
     </dialog>
     <script src="{{ url_for('static', filename='app.js') }}"></script>
 </body>

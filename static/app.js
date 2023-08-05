@@ -23,9 +23,9 @@ let typed = 0
 
 // generated words parameters
 let fishWordsUrl = 'https://random-word-api.herokuapp.com/word'
-let number = 10
-let length = null
-let lang = null
+let number = document.querySelector('#words-amount').value
+let length = document.querySelector('#words-length').value 
+let lang = document.querySelector('#words-language').value
 
 
 // fishWordsUrl += `?number=${number}`
@@ -35,8 +35,16 @@ let lang = null
 //     .then(response => response.json())
 //     .then(data => words = data.join(' '));
 
+const updateSettings = function() {
+    number = document.querySelector('#words-amount').value
+    length = document.querySelector('#words-length').value
+    lang = document.querySelector('#words-language').value 
+}
 
 const fetchFishWords = async function(number=10, length=null, lang=null, url = fishWordsUrl) {
+    length = length == 0? null: length
+    lang = lang == 'en'? null: lang
+
     console.log(`FETCHING --- ${number} words of length ${length? length: 'any'} and ${lang? lang: 'en'}`)
     url += `?number=${number}`
     if (length) {url += `&length=${length}`}
@@ -44,6 +52,7 @@ const fetchFishWords = async function(number=10, length=null, lang=null, url = f
     await fetch(url)
     .then(response => response.json())
     .then(data => {
+        if (!data.length) {throw err}
         console.log('Response:', data)
         words = data.join(' ').toLowerCase()
         return true
@@ -56,7 +65,10 @@ const fetchFishWords = async function(number=10, length=null, lang=null, url = f
 }
 
 const startTyping = async function() {
-    if (!words) {await fetchFishWords(number, length, lang)}
+    if (!words) {
+        updateSettings()
+        await fetchFishWords(number, length, lang)
+    }
     timerInterval = setInterval(() => {
         updateTimer(time, timer)
         time += 1

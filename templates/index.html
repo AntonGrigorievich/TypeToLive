@@ -17,11 +17,11 @@
             <div class="type-errors"></div>
         </div>
         <div class="ticker">
-            <div class="typed">Press</div>
-            <div class="not-typed">&nbsp;start</div>
+            <div class="typed">Нажмите</div>
+            <div class="not-typed">&nbsp;старт</div>
         </div>
         <div class="buttons">
-            <div class="button" id="start-button">start</div>
+            <div class="button" id="start-button">Старт</div>
             <div class="button" id="settings-button"> ⚙ </div>
         </div>
     </div>
@@ -31,23 +31,29 @@
         <div class="info-row">Скорость:</div>
         <div class="info-row">Точность:</div>
         <div class="dialog-buttons">
-            <div class="button" id="dialog-resume-button">resume</div>
-            <div class="button" id="dialog-restart-button">restart</div>
+            <div class="button" id="dialog-resume-button">возобновить</div>
+            <div class="button" id="dialog-restart-button">рестарт</div>
         </div>
     </dialog>
     <dialog class="settings-dialog">
         <div class="settings">
             <div class="settings-row">
-                <label for="words-amount">amount</label> <input type="number" id="words-amount" value="1" min="1" max="100">
+                <label for="words-amount">кол-во слов</label> <input type="number" id="words-amount" value="10" min="1" max="100">
             </div>
             <div class="settings-row">
-                <label for="words-length">length</label> <input type="number" id="words-length" min="1" max="15">
+                <label for="words-length">длинна слов</label> <input type="number" id="words-length" value="0" min="0" max="15">
             </div>
             <div class="settings-row">
-                <label for="words-language">language</label> <input type="" id="words-language">
+                язык <select id="words-language">
+                    <option value="en">english</option>
+                    <option value="zh">chinese</option>
+                    <option value="it">italian</option>
+                    <option value="es">spanish</option>
+                    <option value="de">german</option>
+                </select>
+                <!-- <label for="words-language">язык</label> <input type="" id="words-language"> -->
             </div>
         </div>
-        <button type="submit">submit</button>
     </dialog>
     <script src="{{ url_for('static', filename='app.js') }}"></script>
 </body>
